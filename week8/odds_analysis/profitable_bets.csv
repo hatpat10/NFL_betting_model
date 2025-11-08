@@ -1,0 +1,11 @@
+matchup_key,ev_tier,confidence,bet_recommendation,edge,vegas_line,model_line,sportsbook,home_team,away_team,over_under,context_notes,weather_impact,weather_adj,home_days_rest,away_days_rest,rest_differential
+TEN at IND,🔥 ELITE,Low,BET IND -25.0 (-198),21.1413812,-25,-3.8586188,Market Average (Free Tier),IND,TEN,81.7,,0,0,7,7,0
+WAS at KC,🔥 ELITE,Low,BET KC -19.8 (-181),16.27176732,-19.8,-3.528232684,Market Average (Free Tier),KC,WAS,81.7,,0,0,8,8,0
+TB at NO,🔥 ELITE,Very Low,BET TB -7.7 (-181),-16.22567542,13.3,-2.925675423,Market Average (Free Tier),NO,TB,80,,0,0,7,6,1
+GB at PIT,🔥 ELITE,Low,BET GB -5.2 (-176),-13.20255809,8.9,-4.302558092,Market Average (Free Tier),PIT,GB,78.3,,0,0,10,7,3
+NYG at PHI,🔥 ELITE,Very Low,BET PHI -12.0 (-203),10.93006985,-12,-1.069930153,Market Average (Free Tier),PHI,NYG,73.1,,0,0,7,7,0
+MIA at ATL,🔥 ELITE,Very Low,BET ATL -12.0 (-181),10.07357909,-12,-1.926420915,Market Average (Free Tier),ATL,MIA,76.6,,0,0,7,7,0
+NYJ at CIN,🔥 ELITE,Very Low,BET CIN -9.5 (-186),6.643283653,-9.5,-2.856716347,Market Average (Free Tier),CIN,NYJ,74.9,,0,0,10,7,3
+CLE at NE,🔥 ELITE,Low,BET NE -12.0 (-181),6.293992175,-12,-5.706007825,Market Average (Free Tier),NE,CLE,69.7,,0,0,7,7,0
+DAL at DEN,⭐ STRONG,Very Low,BET DEN -7.7 (-186),4.813345459,-7.7,-2.886654541,Market Average (Free Tier),DEN,DAL,88.6,,0,0,7,7,0
+MIN at LAC,⭐ STRONG,Very Low,BET LAC -6.0 (+172),3.600443578,-6,-2.399556422,Market Average (Free Tier),LAC,MIN,76.6,,0,0,4,4,0
