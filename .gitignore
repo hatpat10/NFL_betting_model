@@ -1,32 +1,49 @@
-# OS
+﻿# --- OS ---
 .DS_Store
 Thumbs.db
-
-# Python
+# --- Editors/IDE ---
+.vscode/
+.idea/
+# --- Python ---
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
 .venv/
 .env
-*.egg-info/
-
-# R
+# --- R ---
 .Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
+.Rapp.history
 .Renviron
-
-# Node
+# renv (keep renv.lock, ignore local libs)
+renv/library/
+renv/staging/
+# --- Node ---
 node_modules/
-
-# Data & artifacts
+# --- Data & Artifacts (keep tiny samples only) ---
 data/
 db/
-reports/*.csv
-reports/*.html
+env/
+exports/
+reports/
 *.parquet
 *.feather
 *.sqlite
-
-# Secrets
+*.db
+*.log
+*.tmp
+*.bak
+# legacy week folders at repo root
+/week*/
+# --- Secrets ---
 config/.env
+*.key
+*.pem
+# --- Exceptions (keep samples & templates) ---
+!data/sample/**
+!config/*.sample
+!.Renviron.sample
