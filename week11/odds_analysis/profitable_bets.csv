@@ -1,0 +1,14 @@
+"matchup_key","ev_tier","confidence","bet_recommendation","edge","vegas_line","model_line","sportsbook","home_team_abbr","away_team_abbr","over_under","game_date","context_notes","weather_impact","home_days_rest","away_days_rest"
+"BAL @ CLE","🔥 ELITE","Very Low","BET AWAY BAL -7.5",-9.68371441242295,7.5,-2.18371441242295,"DraftKings","CLE","BAL",39.5,"2025-11-16T21:25:00Z","",0,7,7
+"NYJ @ NE","🔥 ELITE","Low","BET HOME NE -12.5",8.85935416075421,-12.5,-3.64064583924579,"DraftKings","NE","NYJ",43.5,"2025-11-14T01:15:00Z","",0,4,4
+"SF @ ARI","🔥 ELITE","Low","BET AWAY SF -3",-7.19913909073061,3,-4.19913909073061,"DraftKings","ARI","SF",48.5,"2025-11-16T21:05:00Z","",0,7,7
+"TB @ BUF","🔥 ELITE","Very Low","BET HOME BUF -6",6.34233861567407,-6,0.342338615674071,"DraftKings","BUF","TB",47.5,"2025-11-16T18:00:00Z","",0,7,7
+"HOU @ TEN","🔥 ELITE","Very Low","BET AWAY HOU -6.5",-6.27063435988931,6.5,0.229365640110687,"DraftKings","TEN","HOU",37.5,"2025-11-16T18:00:00Z","😴 Rest mismatch",0,14,7
+"GB @ NYG","🔥 ELITE","Very Low","BET AWAY GB -7",-5.4575036633856,7,1.5424963366144,"DraftKings","NYG","GB",42.5,"2025-11-16T18:00:00Z","",0,7,6
+"KC @ DEN","⭐ STRONG","Very Low","BET AWAY KC -3.5",-3.19064661154275,3.5,0.309353388457252,"DraftKings","DEN","KC",44.5,"2025-11-16T21:25:00Z","😴 Rest mismatch",0,10,14
+"CIN @ PIT","⭐ STRONG","Very Low","BET HOME PIT -5.5",2.9098908461669,-5.5,-2.5901091538331,"DraftKings","PIT","CIN",49.5,"2025-11-16T18:00:00Z","😴 Rest mismatch",0,7,14
+"SEA @ LA","⭐ STRONG","Very Low","BET HOME LA -3",2.76314382991815,-3,-0.236856170081855,"DraftKings","LA","SEA",48.5,"2025-11-16T21:05:00Z","",0,7,7
+"CAR @ ATL","✓ GOOD","Very Low","BET HOME ATL -3.5",1.95791134745715,-3.5,-1.54208865254285,"DraftKings","ATL","CAR",42.5,"2025-11-16T18:00:00Z","",0,7,7
+"CHI @ MIN","✓ GOOD","Very Low","BET HOME MIN -2.5",1.72208912722095,-2.5,-0.777910872779054,"DraftKings","MIN","CHI",48.5,"2025-11-16T18:00:00Z","",0,7,7
+"DAL @ LV","✓ GOOD","Very Low","BET AWAY DAL -3.5",-1.71182057781004,3.5,1.78817942218996,"DraftKings","LV","DAL",50.5,"2025-11-18T01:15:00Z","",0,11,14
+"LAC @ JAX","✓ GOOD","Very Low","BET AWAY LAC -3",-1.50066494515834,3,1.49933505484166,"DraftKings","JAX","LAC",43.5,"2025-11-16T18:00:00Z","",0,7,7
