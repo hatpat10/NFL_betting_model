@@ -1,0 +1,16 @@
+"matchup_key","away_team","home_team","model_line","confidence","weather_impact","home_days_rest","away_days_rest","is_thursday"
+"NYJ @ NE","NYJ","NE",-3.64064583924579,"Low",0,4,4,FALSE
+"GB @ NYG","GB","NYG",1.5424963366144,"Very Low",0,7,6,FALSE
+"CIN @ PIT","CIN","PIT",-2.5901091538331,"Very Low",0,7,14,FALSE
+"HOU @ TEN","HOU","TEN",0.229365640110687,"Very Low",0,14,7,FALSE
+"BAL @ CLE","BAL","CLE",-2.18371441242295,"Very Low",0,7,7,FALSE
+"DAL @ LV","DAL","LV",1.78817942218996,"Very Low",0,11,14,FALSE
+"TB @ BUF","TB","BUF",0.342338615674071,"Very Low",0,7,7,FALSE
+"CAR @ ATL","CAR","ATL",-1.54208865254285,"Very Low",0,7,7,FALSE
+"LAC @ JAX","LAC","JAX",1.49933505484166,"Very Low",0,7,7,FALSE
+"WAS @ MIA","WAS","MIA",-1.82013534496757,"Very Low",0,7,7,FALSE
+"KC @ DEN","KC","DEN",0.309353388457252,"Very Low",0,10,14,FALSE
+"CHI @ MIN","CHI","MIN",-0.777910872779054,"Very Low",0,7,7,FALSE
+"DET @ PHI","DET","PHI",-1.05618575924218,"Very Low",0,6,7,FALSE
+"SEA @ LA","SEA","LA",-0.236856170081855,"Very Low",0,7,7,FALSE
+"SF @ ARI","SF","ARI",-4.19913909073061,"Low",0,7,7,FALSE
