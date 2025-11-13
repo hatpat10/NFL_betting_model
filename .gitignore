@@ -47,3 +47,34 @@ config/.env
 !data/sample/**
 !config/*.sample
 !.Renviron.sample
+
+
+# API Keys and Secrets
+config/.env
+.env
+
+# R Environment
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Data files (optional - these can be large)
+*.sqlite
+*.db
+data/
+pbp_db_*.sqlite
+
+# Output files
+week*/
+*.xlsx
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS Files
+.DS_Store
+Thumbs.db
