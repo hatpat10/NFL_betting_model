@@ -34,7 +34,7 @@ DB_PATH <- "db/nfl_odds_2025.sqlite"
 # 2025 Season Configuration
 SEASON <- 2025
 START_WEEK <- 5  # Start from Week 5
-CURRENT_WEEK <- 10  # Update this to current week
+CURRENT_WEEK <- 11  # Update this to current week
 
 cat("\n", strrep("=", 70), "\n", sep = "")
 cat("NFL 2025 SEASON - HISTORICAL ODDS FETCHER\n")

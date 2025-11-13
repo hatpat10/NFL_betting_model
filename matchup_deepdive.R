@@ -13,12 +13,12 @@ library(nflfastR)
 # ============================================================================
 
 # Set the matchup teams - supports both 2 and 3 letter abbreviations
-HOME_TEAM <- "ATL"   # Denver Broncos
-AWAY_TEAM <- "IND"    # Las Vegas Raiders (2-letter abbreviation is valid)
+HOME_TEAM <- "NE"   # Denver Broncos
+AWAY_TEAM <- "NYJ"    # Las Vegas Raiders (2-letter abbreviation is valid)
 
 # Current season and week
 CURRENT_SEASON <- 2025
-CURRENT_WEEK <- 10
+CURRENT_WEEK <- 11
 
 # ============================================================================
 # LOAD SCHEDULE DATA

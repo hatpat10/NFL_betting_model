@@ -13,7 +13,7 @@ library(RSQLite)
 # Configuration for 2025 Season
 SEASON <- 2025
 START_WEEK <- 5
-CURRENT_WEEK <- 10  # Current week as of now
+CURRENT_WEEK <- 11  # Current week as of now
 MODEL_DIR <- "reports"
 DB_PATH <- "db/nfl_odds_2025.sqlite"
 

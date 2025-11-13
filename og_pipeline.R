@@ -15,7 +15,7 @@ gc()
 # ============================================================================
 
 SEASON <- 2025
-WEEK <- 10  # ← UPDATE THIS EACH WEEK
+WEEK <- 11  # ← UPDATE THIS EACH WEEK
 BASE_DIR <- 'C:/Users/Patsc/Documents/NFL_betting_model'  # ← FIXED PATH
 
 cat("\n")

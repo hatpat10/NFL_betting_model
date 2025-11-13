@@ -15,7 +15,7 @@ gc()
 
 ODDS_API_KEY <- "a35f7d5b7f91dbca7a9364b72c1b1cf2"
 SEASON <- 2025
-WEEK <- 10
+WEEK <- 11
 BASE_DIR <- 'C:\\Users\\Patsc\\Documents\\NFL_betting_model'
 MIN_EDGE_THRESHOLD <- 1.5
 

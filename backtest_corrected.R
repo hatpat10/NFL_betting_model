@@ -27,7 +27,7 @@ library(writexl)
 # ============================================================================
 
 BASE_DIR <- "C:/Users/Patsc/Documents/NFL_betting_model"
-BACKTEST_WEEKS <- 5:9  # Weeks to test (must have been predicted already)
+BACKTEST_WEEKS <- 5:10  # Weeks to test (must have been predicted already)
 SEASON <- 2025
 BET_SIZE <- 100  # $100 per bet for simulation
 
