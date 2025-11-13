@@ -1,0 +1,276 @@
+# https://nflfastr.com/articles/nflfastR.html#example-3-plot-offensive-and-defensive-epa-per-play-for-a-given-season
+
+
+
+library(nflverse)
+library(nflfastR)
+library(nflreadr)
+library(nflplotR)
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+library(ggplotify)
+library(xgboost)
+library(tidyr)
+library(tidyverse)
+library(tidyselect)
+library(zoo)
+library(readr)
+library(readxl)
+library(writexl)
+library(shiny)
+library(ggrepel)
+library(randomForest)
+options(scipen = 9999)
+
+pbp <- nflfastR::load_pbp(2022:2025)
+
+
+
+# Example 2: Using Drive Information
+
+pbp <- nflfastR::load_pbp(c(2003, 2015))
+
+out <- pbp |>
+  dplyr::filter(season_type == "REG" & down == 1 & ydstogo == 10 & yardline_100 == 80) |>
+  dplyr::mutate(drive_score = dplyr::if_else(fixed_drive_result %in% c("Touchdown", "Field goal"), 1, 0)) |>
+  dplyr::summarize(drive_score = mean(drive_score), .by = season)
+
+out |> 
+  knitr::kable(digits = 3)
+
+
+# Example 3: Plot offensive and defensive EPA per play for a given season
+library(nflplotR)
+pbp <- nflfastR::load_pbp(2025) |>
+  dplyr::filter(season_type == "REG") |>
+  dplyr::filter(!is.na(posteam) & (rush == 1 | pass == 1))
+offense <- pbp |>
+  dplyr::group_by(team = posteam) |>
+  dplyr::summarise(off_epa = mean(epa, na.rm = TRUE))
+defense <- pbp |>
+  dplyr::group_by(team = defteam) |>
+  dplyr::summarise(def_epa = mean(epa, na.rm = TRUE))
+offense |>
+  dplyr::inner_join(defense, by = "team") |>
+  ggplot2::ggplot(aes(x = off_epa, y = def_epa)) +
+  ggplot2::geom_abline(slope = -1.5, intercept = c(.4, .3, .2, .1, 0, -.1, -.2, -.3), alpha = .2) +
+  nflplotR::geom_mean_lines(aes(y0 = off_epa, x0 = def_epa)) +
+  nflplotR::geom_nfl_logos(aes(team_abbr = team), width = 0.07, alpha = 0.7) +
+  ggplot2::labs(
+    x = "Offense EPA/play",
+    y = "Defense EPA/play",
+    caption = "Data: @nflfastR",
+    title = "2025 NFL Offensive and Defensive EPA per Play"
+  ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(size = 12, hjust = 0.5, face = "bold")
+  ) +
+  ggplot2::scale_y_reverse()
+
+
+# Example 4: Expected Points calculator
+
+
+data <- tibble::tibble(
+  "season" = 2005:2025,
+  "home_team" = "SEA",
+  "posteam" = "SEA",
+  "roof" = "outdoors",
+  "half_seconds_remaining" = 1800,
+  "yardline_100" = c(rep(80, 17), rep(75, 4)),
+  "down" = 1,
+  "ydstogo" = 10,
+  "posteam_timeouts_remaining" = 3,
+  "defteam_timeouts_remaining" = 3
+)
+nflfastR::calculate_expected_points(data) |>
+  dplyr::select(season, yardline_100, td_prob, ep) |>
+  knitr::kable(digits = 2)
+
+
+data <- tibble::tibble(
+  "season" = 2016:2019,
+  "week" = 5,
+  "home_team" = "SEA",
+  "posteam" = "SEA",
+  "roof" = "dome",
+  "half_seconds_remaining" = 1800,
+  "yardline_100" = c(rep(75, 4)),
+  "down" = 1,
+  "ydstogo" = 10,
+  "posteam_timeouts_remaining" = 3,
+  "defteam_timeouts_remaining" = 3
+)
+nflfastR::calculate_expected_points(data) |>
+  dplyr::select(season, yardline_100, td_prob, ep) |>
+  knitr::kable(digits = 2)
+
+
+# Example 5: Win probability calculator
+
+
+data <- tibble::tibble(
+  "receive_2h_ko" = 0,
+  "home_team" = "SEA",
+  "posteam" = "SEA",
+  "score_differential" = 0,
+  "half_seconds_remaining" = 1800,
+  "game_seconds_remaining" = 3600,
+  "spread_line" = c(1, 3, 4, 7, 14),
+  "down" = 1,
+  "ydstogo" = 10,
+  "yardline_100" = 75,
+  "posteam_timeouts_remaining" = 3,
+  "defteam_timeouts_remaining" = 3
+)
+nflfastR::calculate_win_probability(data) |>
+  dplyr::select(spread_line, wp, vegas_wp) |>
+  knitr::kable(digits = 2)
+
+
+# Example 6: Using the built-in database function
+
+library(DBI)
+library(RSQLite)
+
+nflfastR::update_db()
+
+nflfastR::update_db(force_rebuild = 2025)
+
+connection <- DBI::dbConnect(RSQLite::SQLite(), "./pbp_db")
+connection
+
+
+DBI::dbListTables(connection)
+
+DBI::dbListFields(connection, "nflfastR_pbp") |>
+  utils::head(10)
+
+pbp_db <- dplyr::tbl(connection, "nflfastR_pbp")
+
+
+pbp_db |>
+  dplyr::group_by(season) |>
+  dplyr::summarize(n = dplyr::n())
+pbp_db |>
+  dplyr::filter(rush == 1 | pass == 1, down <= 2, !is.na(epa), !is.na(posteam)) |>
+  dplyr::group_by(pass) |>
+  dplyr::summarize(mean_epa = mean(epa, na.rm = TRUE))
+
+
+russ <- pbp_db |>
+  dplyr::filter(name == "R.Wilson" & posteam == "SEA") |>
+  dplyr::select(desc, epa) |>
+  dplyr::collect()
+russ
+
+
+DBI::dbDisconnect(connection)
+
+
+
+# Example 7: working with the expected yards after catch model
+
+
+nflfastR::load_pbp(2025) |>
+  dplyr::group_by(receiver, receiver_id, posteam) |>
+  dplyr::mutate(tgt = sum(complete_pass + incomplete_pass)) |>
+  dplyr::filter(tgt >= 50) |>
+  dplyr::filter(complete_pass == 1, air_yards < yardline_100, !is.na(xyac_epa)) |>
+  dplyr::summarize(
+    epa_oe = mean(yac_epa - xyac_epa),
+    actual_fd = mean(first_down),
+    expected_fd = mean(xyac_fd),
+    fd_oe = mean(first_down - xyac_fd),
+    rec = dplyr::n()
+  ) |>
+  dplyr::ungroup() |>
+  dplyr::select(receiver, posteam, actual_fd, expected_fd, fd_oe, epa_oe, rec) |>
+  dplyr::slice_max(epa_oe, n = 10) |>
+  knitr::kable(digits = 3)
+
+
+# Example 8: Working with roster and position data
+# At long last, thereâ€™s a way to merge the new play-by-play data with roster information. Use the function to get the rosters:
+
+
+
+
+roster <- nflfastR::fast_scraper_roster(2025)
+
+games_2025 <- nflfastR::load_pbp(2025)
+
+
+games_2025 |>
+  dplyr::filter(rush == 1 | pass == 1, posteam == "SEA") |>
+  dplyr::select(name, id)
+
+# Now weâ€™re ready to join to the roster data using these IDs:
+
+
+joined <- games_2025 |>
+  dplyr::filter(!is.na(receiver_id)) |>
+  dplyr::select(posteam, season, desc, receiver, receiver_id, epa) |>
+  dplyr::left_join(roster, by = c("receiver_id" = "gsis_id"))
+
+# the real work is done, this just makes a table and has it look nice
+joined |>
+  dplyr::filter(position %in% c("WR", "TE", "RB")) |>
+  dplyr::group_by(receiver_id, receiver, position) |>
+  dplyr::summarize(tot_epa = sum(epa), n = n()) |>
+  dplyr::arrange(-tot_epa) |>
+  dplyr::ungroup() |>
+  dplyr::group_by(position) |>
+  dplyr::mutate(position_rank = 1:n()) |>
+  dplyr::filter(position_rank <= 5) |>
+  dplyr::rename(Pos_Rank = position_rank, Player = receiver, Pos = position, Tgt = n, EPA = tot_epa) |>
+  dplyr::select(Player, Pos, Pos_Rank, Tgt, EPA) |>
+  knitr::kable(digits = 0)
+
+
+
+# Example 9: Replicating official stats
+# The columns like name, passer, fantasy etc are nflfastR-created columns that mimic â€œrealâ€ football: i.e., excluding plays with spikes, counting scrambles and sacks as pass plays, etc. But if youâ€™re trying to replicate official statistics â€“ perhaps for fantasy purposes â€“ use the *_player_name and *_player_id columns.
+
+# Letâ€™s try to replicate this page of passing leaders.  - https://www.nfl.com/stats/player-stats/
+
+
+
+
+nflfastR::load_pbp(2025) |>
+  dplyr::filter(season_type == "REG", complete_pass == 1 | incomplete_pass == 1 | interception == 1, !is.na(down)) |>
+  dplyr::group_by(passer_player_name, posteam) |>
+  dplyr::summarize(
+    yards = sum(passing_yards, na.rm = T),
+    tds = sum(touchdown == 1 & td_team == posteam),
+    ints = sum(interception),
+    att = dplyr::n()
+  ) |>
+  dplyr::arrange(-yards) |>
+  utils::head(10) |>
+  knitr::kable(digits = 0)
+
+
+#This function has the following features:
+
+# It determines stats in offense, defense, and special teams,
+# either on player level or on team level,
+# and can summarize them on season level (separately for regular season and post season) or on week level.
+# For more information see the function documentation of calculate_stats(). Again, donâ€™t try to get an exact match with official 
+#stats based on nflfastR play-by-play data. It usually works, but fails because of details that are unsolvable.
+
+# Now letâ€™s replicate the above table using calculate_stats():
+
+
+
+s <- nflfastR::calculate_stats(
+  seasons = 2025, 
+  summary_level = "season",
+  stat_type = "player",
+  season_type = "REG"
+)
+s |>
+  dplyr::slice_max(passing_yards, n = 10) |> 
+  dplyr::select(player_name, recent_team, completions, attempts, passing_yards, passing_tds, passing_interceptions, attempts) |>
+  knitr::kable(digits = 0)
