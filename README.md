@@ -31,3 +31,4 @@ python py\odds_snapshot.py
 python py\line_movement_report.py --season 2025 --week 10
 python py\export_week_to_excel.py --season 2025 --week 10
 ```
+"# NFL_betting_model" 
