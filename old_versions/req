@@ -1,0 +1,13 @@
+pandas
+pyarrow
+duckdb
+sqlalchemy
+pydantic
+requests
+python-dotenv
+scikit-learn
+xgboost
+lightgbm
+matplotlib
+joblib
+openpyxl
